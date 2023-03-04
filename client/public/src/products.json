@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Tetrao Cervus",
+    "category": "obuv",
+    "color": "hnedá",
+    "price": 298,
+    "imageURL": "./img/obuv1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Avers",
+    "category": "obuv",
+    "color": "oranžová",
+    "price": 55,
+    "imageURL": "./img/obuv2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Skarbek",
+    "category": "obuv",
+    "color": "čierna",
+    "price": 24,
+    "imageURL": "./img/obuv3.jpg"
+  },
+  {
+    "id": 4,
+    "name": "BS",
+    "category": "obuv",
+    "color": "biela",
+    "price": 31,
+    "imageURL": "./img/obuv4.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Boxing",
+    "category": "mikina",
+    "color": "čierna",
+    "price": 47,
+    "imageURL": "./img/mikina1.jpg"
+  },
+  {
+    "id": 6,
+    "name": "MIKINA",
+    "category": "mikina",
+    "color": "biela",
+    "price": 29,
+    "imageURL": "./img/mikina2.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Marine",
+    "category": "mikina",
+    "color": "modrá",
+    "price": 51,
+    "imageURL": "./img/mikina3.jpg"
+  },
+  {
+    "id": 8,
+    "name": "The North Face",
+    "category": "mikina",
+    "color": "žltá",
+    "price": 49,
+    "imageURL": "./img/mikina4.jpg"
+  },
+  {
+    "id": 9,
+    "name": "B&C",
+    "category": "tričko",
+    "color": "oranžová",
+    "price": 5,
+    "imageURL": "./img/tricko1.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Classic",
+    "category": "tričko",
+    "color": "čierna",
+    "price": 4,
+    "imageURL": "./img/tricko2.jpg"
+  },
+  {
+    "id": 11,
+    "name": "NEO",
+    "category": "tričko",
+    "color": "modrá",
+    "price": 8,
+    "imageURL": "./img/tricko3.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Venti",
+    "category": "tričko",
+    "color": "biela",
+    "price": 29,
+    "imageURL": "./img/tricko4.jpg"
+  }
+]
