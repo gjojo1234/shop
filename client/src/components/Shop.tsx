@@ -11,9 +11,7 @@ interface Items {
 }
 
 const Shop = () => {
-  const [items, setItems] = useState<Items[]>(
-    JSON.parse(`${window.localStorage.getItem("buy")}`)
-  );
+  const [items, setItems] = useState<Items[]>([]);
   const [total, setTotal] = useState<number[]>([]);
 
   const values = useContext(AppContext);
@@ -27,7 +25,11 @@ const Shop = () => {
     }
   };
   useEffect(() => {
-    if (items !== null) {
+    const itemObject: Items[] = JSON.parse(
+      `${window.localStorage.getItem("buy")}`
+    );
+    setItems(itemObject);
+    if (itemObject !== null) {
       const sum: number = items.reduce((acc, result) => acc + result.price, 0);
       setTotal([sum]);
     }
