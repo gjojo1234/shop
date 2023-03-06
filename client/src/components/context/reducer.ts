@@ -4,6 +4,7 @@ interface Action {
 interface State {
   toggleCategoryBtn: boolean;
   showShopState: boolean;
+  showMenu: boolean;
 }
 
 const reducer = (state: State, action: Action) => {
@@ -17,6 +18,11 @@ const reducer = (state: State, action: Action) => {
       return {
         ...state,
         showShopState: !state.showShopState,
+      };
+    case "SHOW_MENU":
+      return {
+        ...state,
+        showMenu: !state.showMenu,
       };
     default:
       return state;

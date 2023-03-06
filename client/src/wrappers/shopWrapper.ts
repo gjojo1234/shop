@@ -113,6 +113,13 @@ const Wrapper = styled.section`
     cursor: pointer;
     background-color: var(--green-color-600);
   }
+  @media screen and (max-width: 600px) {
+    .shopContainer {
+      min-width: 40vw;
+      min-height: 30vh;
+      max-width: 90vw;
+    }
+  }
 `;
 
 export default Wrapper;

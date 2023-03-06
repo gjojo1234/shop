@@ -1,28 +1,41 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+
 import Wrapper from "../wrappers/navbarWrapper";
 import { FiShoppingCart } from "react-icons/fi";
+import { HiBars4 } from "react-icons/hi2";
 import { AppContext } from "./context/appContext";
 import Shop from "./Shop";
+import { Link } from "react-router-dom";
+
 const Navbar: React.FC = () => {
   const values = useContext(AppContext);
-  const { showShop, showShopState } = values;
+  const { showShop, showShopState, toggleShowMenu } = values;
+
   return (
     <Wrapper>
       {showShopState && <Shop />}
-      <nav className="nav">
-        <Link to="/" className="navbarItem">
-          Produkty
-        </Link>
-        <Link to="/login" className="navbarItem">
-          Prihlásenie
-        </Link>
-        <Link to="/register" className="navbarItem">
-          Registrácia
-        </Link>
-        <button onClick={showShop} className="navbarItem">
-          <FiShoppingCart />
+      <nav>
+        <button onClick={toggleShowMenu} className="navMenu">
+          <HiBars4 />
         </button>
+        <div>
+          <h1>Trial Shop</h1>
+        </div>
+        <div className="navbarItems">
+          <Link to="/" className="navbarItem navbarHide">
+            Produkty
+          </Link>
+          <Link to="/login" className="navbarItem navbarHide">
+            Prihlásenie
+          </Link>
+          <Link to="/register" className="navbarItem navbarHide">
+            Registrácia
+          </Link>
+
+          <button onClick={showShop} className="navbarItem">
+            <FiShoppingCart />
+          </button>
+        </div>
       </nav>
     </Wrapper>
   );
