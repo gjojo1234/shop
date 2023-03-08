@@ -4,14 +4,12 @@ import dotenv from "dotenv";
 dotenv.config();
 import connectDB from "./db/connect.js";
 import productRouter from "./routes/productRouter.js";
-import cors from "cors";
 
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import path from "path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-app.use(cors());
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 
