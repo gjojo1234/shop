@@ -25,16 +25,12 @@ interface Product {
 }
 const Products = () => {
   const [productToShop, setProductToShop] = useState<ProductToShop[]>([]);
-  const [products, setProducts] = useState<Product[] | null>();
+  const [products, setProducts] = useState<Product[] | null>([]);
   const [keyword, setKeyword] = useState<string>();
   const [filters, setFilters] = useState<Filtered>();
   const values = useContext(AppContext);
   const { toggleCategoryShow, toggleCategoryBtn } = values;
 
-  /* async function fetchProducts<Product>(resourceUrl: string): Promise<Product> {
-    const response = await fetch(resourceUrl);
-    return await response.json();
-  } */
   const getProducts = async () => {
     try {
       const {
