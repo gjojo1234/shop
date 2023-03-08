@@ -25,7 +25,7 @@ interface Product {
 }
 const Products = () => {
   const [productToShop, setProductToShop] = useState<ProductToShop[]>([]);
-  const [products, setProducts] = useState<Product[] | null>([]);
+  const [products, setProducts] = useState<Product[] | null>();
   const [keyword, setKeyword] = useState<string>();
   const [filters, setFilters] = useState<Filtered>();
   const values = useContext(AppContext);
