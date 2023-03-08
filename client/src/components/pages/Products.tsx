@@ -33,10 +33,9 @@ const Products = () => {
 
   const getProducts = async () => {
     try {
-      const {
-        data: { products },
-      }: { data: { products: Product[] } } = await axios.get("/product");
-      setProducts(products);
+      const { data } = await axios.get("/product");
+      const { product } = data;
+      setProducts(product);
     } catch (error) {}
   };
   const addToShop = (
