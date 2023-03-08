@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Wrapper from "../../wrappers/productsWrapper";
+import { AppContext } from "../context/appContext";
+import { HiChevronDown, HiChevronUp, HiMagnifyingGlass } from "react-icons/hi2";
+import axios from "axios";
 
-import Filter from "../Filter";
+interface Filtered {
+  category: string;
+}
 
 interface ProductToShop {
   id: number;
@@ -21,12 +26,23 @@ interface Product {
 const Products = () => {
   const [productToShop, setProductToShop] = useState<ProductToShop[]>([]);
   const [products, setProducts] = useState<Product[] | null>();
+  const [keyword, setKeyword] = useState<string>();
+  const [filters, setFilters] = useState<Filtered>();
+  const values = useContext(AppContext);
+  const { toggleCategoryShow, toggleCategoryBtn } = values;
 
-  async function fetchProducts<Product>(resourceUrl: string): Promise<Product> {
+  /* async function fetchProducts<Product>(resourceUrl: string): Promise<Product> {
     const response = await fetch(resourceUrl);
     return await response.json();
-  }
-
+  } */
+  const getProducts = async () => {
+    try {
+      const {
+        data: { products },
+      }: { data: { products: Product[] } } = await axios.get("/product");
+      setProducts(products);
+    } catch (error) {}
+  };
   const addToShop = (
     e: React.MouseEvent<HTMLButtonElement>,
     id: number,
@@ -38,19 +54,126 @@ const Products = () => {
 
     setProductToShop([...productToShop, item]);
   };
+
+  const onSubmitKeyword: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    console.log(keyword);
+  };
+  const onSubmitFilter: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    console.log(filters);
+  };
+  const resetFilter: React.MouseEventHandler<HTMLButtonElement> = () => {
+    setFilters(undefined);
+  };
+
   useEffect(() => {
     window.localStorage.setItem("buy", `${JSON.stringify(productToShop)}`);
   }, [productToShop]);
+
   useEffect(() => {
-    fetchProducts<Product[]>("./src/products.json").then((products) => {
-      let newProducts: Product[] = products;
-      setProducts(newProducts);
-    });
+    getProducts();
   }, []);
+
   return (
     <Wrapper>
       <section className="home">
-        <section className="sectionFilter">{<Filter />}</section>
+        <section className="sectionFilter">
+          <nav>
+            <div className="filterComponent">
+              <h1 className="title">filter</h1>
+              <button className="reset" onClick={resetFilter}>
+                Reset
+              </button>
+            </div>
+            <form onSubmit={onSubmitKeyword}>
+              <div className="filterComponent keyword">
+                <input
+                  type="text"
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    setKeyword(event.target.value)
+                  }
+                  placeholder="Názov..."
+                  className="inputKeyword"
+                />
+                <button type="submit" className="keywordBtn">
+                  {<HiMagnifyingGlass />}
+                </button>
+              </div>
+            </form>
+            <form onSubmit={onSubmitFilter}>
+              <div className="category">
+                <div className="categoryFilter">
+                  <p>Kategória</p>
+                  <button
+                    onClick={toggleCategoryShow}
+                    className="toggleFilterBtn"
+                  >
+                    {toggleCategoryBtn ? <HiChevronUp /> : <HiChevronDown />}
+                  </button>
+                </div>
+                {toggleCategoryBtn && (
+                  <div className="categoryItems">
+                    <div className="categoryItem ">
+                      <input
+                        type="radio"
+                        id="category1"
+                        name="category"
+                        value="obuv"
+                        className="inputCat"
+                        onChange={(event) =>
+                          setFilters({
+                            ...filters,
+                            category: event.target.value,
+                          })
+                        }
+                        checked={filters?.category === "obuv"}
+                      />
+                      <label htmlFor="category1">Obuv</label>
+                    </div>
+                    <div className="categoryItem">
+                      <input
+                        type="radio"
+                        id="category2"
+                        name="category"
+                        value="mikina"
+                        className="inputCat"
+                        onChange={(event) =>
+                          setFilters({
+                            ...filters,
+                            category: event.target.value,
+                          })
+                        }
+                        checked={filters?.category === "mikina"}
+                      />
+                      <label htmlFor="category2">Mikina</label>
+                    </div>
+                    <div className="categoryItem">
+                      <input
+                        type="radio"
+                        id="category3"
+                        name="category"
+                        value="tričko"
+                        className="inputCat"
+                        onChange={(event) =>
+                          setFilters({
+                            ...filters,
+                            category: event.target.value,
+                          })
+                        }
+                        checked={filters?.category === "tričko"}
+                      />
+                      <label htmlFor="category3">Tričko</label>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <button type="submit" className="filterBtn">
+                Filtrovať
+              </button>
+            </form>
+          </nav>
+        </section>
         <section className="sectionProducts">
           {products?.map((item) => {
             const { id, name, category, color, price, imageURL } = item;
