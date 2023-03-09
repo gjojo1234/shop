@@ -2,11 +2,19 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
   .home {
+    min-height: calc(100vh - 4rem);
+    min-width: 100vw;
+    background-color: var(--background-color-200);
     display: flex;
+
     justify-content: flex-start;
   }
 
   //section filters
+  .sectionFilter {
+    height: auto;
+    background-color: var(--background-color-200);
+  }
   nav {
     width: 17rem;
     height: auto;
@@ -117,18 +125,13 @@ const Wrapper = styled.section`
     cursor: pointer;
     background-color: var(--light-blue-color-600);
   }
-  .sectionFilter {
-    width: 100vw;
-    height: auto;
-    background-color: var(--background-color-200);
-  }
 
   //section containers
 
   .sectionProducts {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     padding-top: 2.5rem;
     background-color: var(--background-color-200);
@@ -174,15 +177,23 @@ const Wrapper = styled.section`
     cursor: pointer;
     background: var(--green-color-600);
   }
+
   @media screen and (max-width: 600px) {
     .home {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
     }
     .sectionProducts {
+      width: 100vw;
+      height: auto;
       padding-top: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
     }
     .sectionFilter {
       width: 100vw;
@@ -190,7 +201,7 @@ const Wrapper = styled.section`
       background-color: var(--background-color-200);
     }
     .container {
-      margin: 1rem 0 1rem 1rem;
+      margin: 1rem 0;
       padding: 0.5rem 1rem;
       width: 16rem;
       height: 15rem;

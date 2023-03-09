@@ -33,11 +33,12 @@ const Products = () => {
 
   const getProducts = async () => {
     try {
-      const { data } = await axios.get("/product");
+      let { data } = await axios.get("/product");
       let { products } = data;
       setProducts(products);
     } catch (error) {}
   };
+
   const addToShop = (
     e: React.MouseEvent<HTMLButtonElement>,
     id: number,
@@ -50,13 +51,27 @@ const Products = () => {
     setProductToShop([...productToShop, item]);
   };
 
-  const onSubmitKeyword: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    console.log(keyword);
+  const onSubmitKeyword: React.FormEventHandler<HTMLFormElement> = async (
+    e
+  ) => {
+    try {
+      e.preventDefault();
+      let { data } = await axios.get(`/product/filter?name=${keyword}`);
+      let { products } = data;
+
+      setProducts(products);
+    } catch (error) {}
   };
-  const onSubmitFilter: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    console.log(filters);
+  const onSubmitFilter: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    try {
+      e.preventDefault();
+      let { data } = await axios.get(
+        `/product/filter?category=${filters?.category}`
+      );
+      let { products } = data;
+
+      setProducts(products);
+    } catch (error) {}
   };
   const resetFilter: React.MouseEventHandler<HTMLButtonElement> = () => {
     setFilters(undefined);
@@ -100,6 +115,7 @@ const Products = () => {
                 <div className="categoryFilter">
                   <p>Kategória</p>
                   <button
+                    type="button"
                     onClick={toggleCategoryShow}
                     className="toggleFilterBtn"
                   >

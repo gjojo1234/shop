@@ -8,6 +8,6 @@ import {
 } from "../controllers/productController.js";
 
 router.route("/").get(getAllProducts).post(createProduct);
-router.route("/filter/").get(getFilterProducts);
+router.route("/filter").get(getFilterProducts);
 
 export default router;

@@ -6,14 +6,14 @@ const getAllProducts = async (req, res) => {
 };
 const getFilterProducts = async (req, res) => {
   try {
-    let productFilter = {};
+    const productFilter = {};
     const nameValue = req.query.name;
     const categoryValue = req.query.category;
     if (nameValue) {
-      productFilter = { name: nameValue };
+      productFilter.name = nameValue;
     }
     if (categoryValue) {
-      productFilter = { ...productFilter, category: categoryValue };
+      productFilter.category = categoryValue;
     }
     const products = await Product.find(productFilter);
     res.status(200).json({ products });
