@@ -10,6 +10,7 @@ const Wrapper = styled.section`
     background-color: var(--background-color-800);
   }
   .navbarItems {
+    height: 100%;
     display: flex;
     justify-content: space-around;
   }
