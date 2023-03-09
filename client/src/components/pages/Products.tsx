@@ -25,7 +25,7 @@ interface Product {
 }
 const Products = () => {
   const [productToShop, setProductToShop] = useState<ProductToShop[]>([]);
-  const [products, setProducts] = useState<Product[] | null>();
+  const [products, setProducts] = useState<Product[] | null>([]);
   const [keyword, setKeyword] = useState<string>();
   const [filters, setFilters] = useState<Filtered>();
   const values = useContext(AppContext);
@@ -34,8 +34,8 @@ const Products = () => {
   const getProducts = async () => {
     try {
       const { data } = await axios.get("/product");
-      const { product } = data;
-      setProducts(product);
+      let { products } = data;
+      setProducts(products);
     } catch (error) {}
   };
   const addToShop = (
@@ -63,12 +63,11 @@ const Products = () => {
   };
 
   useEffect(() => {
-    window.localStorage.setItem("buy", `${JSON.stringify(productToShop)}`);
-  }, [productToShop]);
-
-  useEffect(() => {
     getProducts();
   }, []);
+  useEffect(() => {
+    window.localStorage.setItem("buy", `${JSON.stringify(productToShop)}`);
+  }, [productToShop]);
 
   return (
     <Wrapper>
