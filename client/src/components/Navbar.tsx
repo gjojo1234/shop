@@ -6,10 +6,11 @@ import { HiBars4 } from "react-icons/hi2";
 import { AppContext } from "./context/appContext";
 import Shop from "./Shop";
 import { Link } from "react-router-dom";
+import LoginIcon from "./LoginIcon";
 
 const Navbar: React.FC = () => {
   const values = useContext(AppContext);
-  const { showShop, showShopState, toggleShowMenu } = values;
+  const { showShop, showShopState, toggleShowMenu, user } = values;
 
   return (
     <Wrapper>
@@ -25,16 +26,24 @@ const Navbar: React.FC = () => {
           <Link to="/" className="navbarItem navbarHide">
             Produkty
           </Link>
-          <Link to="/login" className="navbarItem navbarHide">
+
+          <Link
+            to="/login"
+            className={user ? "hiddenItem" : "navbarItem navbarHide"}
+          >
             Prihlásenie
           </Link>
-          <Link to="/register" className="navbarItem navbarHide">
+          <Link
+            to="/register"
+            className={user ? "hiddenItem" : "navbarItem navbarHide"}
+          >
             Registrácia
           </Link>
 
           <button onClick={showShop} className="navbarItem">
             <FiShoppingCart />
           </button>
+          {user && <LoginIcon />}
         </div>
       </nav>
     </Wrapper>

@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import connectDB from "./db/connect.js";
 import productRouter from "./routes/productRouter.js";
+import authRouter from "./routes/authRouter.js";
 
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 app.use("/product", productRouter);
+app.use("/auth", authRouter);
 
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));

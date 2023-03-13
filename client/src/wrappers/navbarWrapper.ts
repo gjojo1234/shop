@@ -44,7 +44,9 @@ const Wrapper = styled.section`
     color: var(--background-color-400);
     padding: 0 1rem;
   }
-
+  .hiddenItem {
+    display: none;
+  }
   @media screen and (max-width: 600px) {
     nav {
       max-width: 100vw;

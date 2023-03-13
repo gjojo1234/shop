@@ -1,10 +1,16 @@
 interface Action {
   type: string;
+  payload: {
+    user: { name: string; email: string } | null;
+    token: string | null;
+  };
 }
 interface State {
   toggleCategoryBtn: boolean;
   showShopState: boolean;
   showMenu: boolean;
+  user: { name: string; email: string } | null;
+  token: string | null;
 }
 
 const reducer = (state: State, action: Action) => {
@@ -23,6 +29,12 @@ const reducer = (state: State, action: Action) => {
       return {
         ...state,
         showMenu: !state.showMenu,
+      };
+    case "USER_SUCCESS":
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
       };
     default:
       return state;
