@@ -73,8 +73,15 @@ const Products = () => {
       setProducts(products);
     } catch (error) {}
   };
-  const resetFilter: React.MouseEventHandler<HTMLButtonElement> = () => {
-    setFilters(undefined);
+  const resetFilter: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
+    try {
+      e.preventDefault();
+      setFilters(undefined);
+      let { data } = await axios.get(`/product`);
+      let { products } = data;
+
+      setProducts(products);
+    } catch (error) {}
   };
 
   useEffect(() => {
