@@ -10,7 +10,7 @@ const getFilterProducts = async (req, res) => {
     const nameValue = req.query.name;
     const categoryValue = req.query.category;
     if (nameValue) {
-      productFilter.name = nameValue;
+      productFilter.name = { $regex: nameValue, $options: "i" };
     }
     if (categoryValue) {
       productFilter.category = categoryValue;

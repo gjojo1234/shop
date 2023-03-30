@@ -36,7 +36,7 @@ const Shop = () => {
   }, [items]);
   return (
     <Wrapper>
-      <div className="shop">
+      <div className="shop" data-testid="shop-container">
         <div className="shopContainer">
           <h1 className="shopTitle">Košík</h1>
           <button onClick={showShop} className="closeBtn">

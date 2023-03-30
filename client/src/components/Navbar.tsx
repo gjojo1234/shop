@@ -8,7 +8,7 @@ import Shop from "./Shop";
 import { Link } from "react-router-dom";
 import LoginIcon from "./LoginIcon";
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const values = useContext(AppContext);
   const { showShop, showShopState, toggleShowMenu, user } = values;
 
@@ -40,7 +40,11 @@ const Navbar: React.FC = () => {
             Registrácia
           </Link>
 
-          <button onClick={showShop} className="navbarItem">
+          <button
+            onClick={showShop}
+            className="navbarItem"
+            data-testid="shopItem"
+          >
             <FiShoppingCart />
           </button>
           {user && <LoginIcon />}
